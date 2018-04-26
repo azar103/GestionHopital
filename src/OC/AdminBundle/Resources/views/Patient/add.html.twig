@@ -1,0 +1,16 @@
+{# src/OC/AdminBundle/Resources/views/Patien/add.html.twig #}
+{% extends "OCAdminBundle::layout.html.twig" %}
+
+{% block oc_body_content %}
+  <div class="container-fluid" style="background-color:red;color:white;">
+  <h2>
+
+    Add Patient
+</div>
+{{include("OCAdminBundle:Patient:form.html.twig")}}
+
+<p>
+    Attention : ce Patient sera ajouté directement
+    sur la page d'accueil après validation du formulaire.
+  </p>
+{% endblock %}
