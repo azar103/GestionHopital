@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse; 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use OC\AdminBundle\Entity\Appoinment;
 
 class AppoinmentController extends Controller {
     
@@ -46,6 +47,13 @@ class AppoinmentController extends Controller {
 
     public function addAction(Request $request)
     {
+      $appoinment = new Appoinment();
+      $appoinment->setDoctorName('Mateo');
+      $appoinment->setPatientName('Nicholas');
+
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($appoinment);
+      $em->flush();
     	//si le forumulaire est postulé
     	if($request->isMethod('POST'))
     	{

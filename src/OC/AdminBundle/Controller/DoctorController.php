@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse; 
 use Symfony\Component\HttpFoundation\Request;
+use OC\AdminBundle\Entity\Doctor;
 
 class DoctorController extends Controller {
 
@@ -31,6 +32,20 @@ class DoctorController extends Controller {
 
     public function addAction(Request $request)
     {
+
+      $doctor = new Doctor;
+
+      $doctor->setName('Mateo');
+      $doctor->setSpecialization('géneraliste');
+      $em = $this->getDoctrine()
+                 ->getManager();
+      
+
+      $em->persist($doctor);
+      
+
+      $em->flush(); 
+                 
     	//si le forumulaire est postulé
     	if($request->isMethod('POST'))
     	{
@@ -39,7 +54,7 @@ class DoctorController extends Controller {
 
     	}
 
-        return $this->render('OCAdminBundle:Doctor:add.html.twig');
+        return $this->render('OCAdminBundle:Doctor:add.html.twig', array('doctor'=>$doctor));
     }
 
    public function  editAction(Request $request, $id)
